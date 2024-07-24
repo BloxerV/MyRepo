@@ -1,0 +1,24 @@
+SELECT CASE 
+    WHEN a+c<=b OR a+b<=c OR c+b<=a THEN 'Not A Triangle'
+    WHEN  a = b AND b <> c OR a = c AND c <> b OR b = c AND c <> a THEN 'Isosceles'
+    WHEN  a = b AND b = c THEN 'Equilateral'
+    WHEN a <> b AND  b <> c THEN 'Scalene'
+    END
+FROM TRIANGLES
+
+SELECT CONCAT(name, '(', LEFT(occupation, 1), ')') FROM occupations;
+SELECT CONCAT('There are a total of ', ' ', COUNT(occupation), ' ', LOWER(occupation), 's.')
+FROM occupations
+GROUP BY occupation
+ORDER BY COUNT(*) ASC, occupation;
+
+
+SELECT
+    MAX(CASE WHEN occupation = 'Doctor' THEN name ELSE NULL END) AS  'Doctor',
+    MAX(CASE WHEN occupation = 'Professor' THEN name ELSE NULL END) AS  'Professor',
+    MAX(CASE WHEN occupation = 'Singer' THEN name ELSE NULL END) AS  'Singer',
+    MAX(CASE WHEN occupation = 'Actor' THEN name ELSE NULL END) AS  'Actor'
+FROM occupations
+GROUP BY name;
+
+\\192.168.1.110\prox-pool\prox-share
