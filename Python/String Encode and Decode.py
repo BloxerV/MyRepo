@@ -25,18 +25,11 @@ Constraints:
 class Solution:
 
     def encode(self, strs: List[str]) -> str:
-        return "".join(strs)
-        
-    def decode(self, s: str) -> List[str]:
-        lista = []
-        word = ''
-        for i in s:
-            word += i
-            if len(word) == 4:
-                lista += [word]
-                word = ''
-        if word:
-            lista += [word]
+        if not strs:
+            return "[]"
+        return ";".join(strs)
 
-        print(lista)
-        return lista
+    def decode(self, s: str) -> List[str]:
+        if s == "[]":
+            return []
+        return s.split(';')
