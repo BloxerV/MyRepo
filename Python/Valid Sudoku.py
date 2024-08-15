@@ -1,35 +1,23 @@
-from collections import defaultdict
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        cols = defaultdict(set)
+        rows = defaultdict(set)
+        cubes = defaultdict(set)
 
-board = [
-["1","2",".",".","3",".",".",".","."],
-["4",".",".","5",".",".",".",".","."],
-[".","9","1",".",".",".",".",".","3"],
-["5",".",".",".","6",".",".",".","4"],
-[".",".",".","8",".","3",".",".","5"],
-["7",".",".",".","2",".",".",".","6"],
-[".",".",".",".",".",".","2",".","."],
-[".",".",".","4","1","9",".",".","8"],
-[".",".",".",".","8",".",".","7","9"]]
+        for r in range(9):
+            for c in range(9):
 
-cols = defaultdict(set)
-rows = defaultdict(set)
+                if board[r][c] == '.':
+                    continue
 
-for r in range(9):
-    for c in range(9):
+                if board[r][c] in cols[c] or board[r][c] in rows[r] or board[r][c] in cubes[(r // 3, c // 3)]:
+                    return False
 
-        if board[r][c] == '.':
-            continue
+                cubes[(r // 3, c // 3)].add(board[r][c])
+                cols[c].add(board[r][c])
+                rows[r].add(board[r][c])
 
-        if board[r][c] in cols[c] or board[r][c] in rows[r]:
-            print('not good')
-
-        cols[c].add(board[r][c])
-        rows[r].add(board[r][c])
-print('good')
-
-cols.keys()
-cols.values()
-cols
+        return True 
 
 '''
 You are given a a 9 x 9 Sudoku board board. A Sudoku board is valid if the following rules are followed:
