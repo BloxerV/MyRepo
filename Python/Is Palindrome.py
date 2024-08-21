@@ -1,12 +1,14 @@
-s="0P"
-s_joined_reversed = "".join(x for x in s if x.isalpha())
-s_joined_reversed_lower = s_joined_reversed.lower()
-len_s_joined_reversed_lower = len(s_joined_reversed_lower)
-for i in range(len_s_joined_reversed_lower):
-    if not s_joined_reversed_lower[i] == s_joined_reversed_lower[len_s_joined_reversed_lower - 1 - i]:
-        print('false')
-print('true')
+def is_palindrome(word: str) -> bool:
+    s_joined_reversed = "".join(x for x in word if x.isalpha())
+    s_joined_reversed_lower = s_joined_reversed.lower()
+    len_s_joined_reversed_lower = len(s_joined_reversed_lower)
+    for i in range(len_s_joined_reversed_lower):
+        if not s_joined_reversed_lower[i] == s_joined_reversed_lower[len_s_joined_reversed_lower - 1 - i]:
+            return False
+    return True
 
+s = "tab a cat"
+print(is_palindrome(s))
 
 '''
 Given a string s, return true if it is a palindrome, otherwise return false.
