@@ -1,5 +1,5 @@
 def is_palindrome(word: str) -> bool:
-    s_joined_reversed = "".join(x for x in word if x.isalpha())
+    s_joined_reversed = "".join(x for x in word if x.isalnum())
     s_joined_reversed_lower = s_joined_reversed.lower()
     len_s_joined_reversed_lower = len(s_joined_reversed_lower)
     for i in range(len_s_joined_reversed_lower):
@@ -7,7 +7,7 @@ def is_palindrome(word: str) -> bool:
             return False
     return True
 
-s = "tab a cat"
+s = "0P"
 print(is_palindrome(s))
 
 '''
