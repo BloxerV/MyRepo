@@ -3,7 +3,7 @@ def is_palindrome(word: str) -> bool:
     s_joined_reversed_lower = s_joined_reversed.lower()
     len_s_joined_reversed_lower = len(s_joined_reversed_lower)
     for i in range(len_s_joined_reversed_lower):
-        if not s_joined_reversed_lower[i] == s_joined_reversed_lower[len_s_joined_reversed_lower - 1 - i]:
+        if s_joined_reversed_lower[i] != s_joined_reversed_lower[len_s_joined_reversed_lower - 1 - i]:
             return False
     return True
 
