@@ -1,19 +1,27 @@
-def three_sums(numbers: list[int]) -> list[list[int]]:
+def three_sums(nums: list[int]) -> list[list[int]]:
 
-    i = 0
-    left = 0
-    right = len(numbers) - 1
+    nums.sort()
     matching = []
-    suma = numbers[left] + numbers[right] + numbers[i]
-    while left < right:
-        if suma == 0:
-            matching += [numbers[left], numbers[right], numbers[i]]
-        elif suma < 0:
-            left += 1
-        elif suma > 0:
-            right -= 1
-        for i in range(len(numbers)):
-             suma = numbers[left] + numbers[right] + numbers[i]
+
+    for i, a in enumerate(nums):
+
+        if i > 0 and a == nums[i - 1]:
+            continue
+
+        left, right = i + 1, len(nums) - 1
+
+        while left < right:
+            suma = nums[left] + nums[right] + a
+            if suma < 0:
+                left += 1
+            elif suma > 0:
+                right -= 1
+            else:
+                matching.append([nums[left], nums[right], a])
+                left += 1
+                while nums[left] == nums[left - 1] and left < right:
+                    left += 1
+
     return matching
 
 num = [-1,0,1,2,-1,-4]
