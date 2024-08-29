@@ -1,18 +1,13 @@
 def max_area(heights: list[int]) -> int:
     left, right = 0, len(heights) - 1
     suma = 0
-    suma_of_i = 0
 
     while left < right:
-        suma = max(suma, suma_of_i)
+        res = (right - left) * min(heights[right], heights[left])
+        suma = max(suma, res)
 
         if heights[left] < heights[right]:
-            suma_of_i = (right - left) * left
             left += 1
-
-        elif heights[left] > heights[right]:
-            suma_of_i = (right - left) * right
-            right -= 1
 
         else:
             right -= 1
