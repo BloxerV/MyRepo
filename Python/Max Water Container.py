@@ -1,30 +1,26 @@
-def maxArea(heights: list[int]) -> int:
+def max_area(heights: list[int]) -> int:
     left, right = 0, len(heights) - 1
     suma = 0
+    suma_of_i = 0
 
-    for i, a in enumerate(heights):
+    while left < right:
+        suma = max(suma, suma_of_i)
 
-        while left < right:
+        if heights[left] < heights[right]:
+            suma_of_i = (right - left) * left
+            left += 1
 
-            if heights[left] <= heights[right]:
-                suma_of_i = (heights[left] * heights[left]) * ((len(heights) - 1) - (i + 1))
-                left += 1
-            elif heights[left] >= heights[right]:
-                suma_of_i = (heights[right] * heights[right]) * ((len(heights) - 1) - (i + 1))
-                right -= 1
+        elif heights[left] > heights[right]:
+            suma_of_i = (right - left) * right
+            right -= 1
 
-            if suma < suma_of_i:
-                suma = suma_of_i
-                devider = ((len(heights) - 1) - (i + 1))
+        else:
+            right -= 1
 
-            else:
-                left += 1
+    return suma
 
-
-    return suma//devider
-
-s = [1,7,2,5,12,3,500,500,7,8,4,7,3,6]
-print(maxArea(s))
+s = [1,7,2,5,4,7,3,6]
+print(max_area(s))
 
 
 
