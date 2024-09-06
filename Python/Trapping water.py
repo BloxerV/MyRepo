@@ -29,12 +29,12 @@ def trap(height: list[int]) -> int:
 
         else:
             left += 1
-            
 
     return res
 
-print(trap([0,1,0,2,1,0,1,3,2,1,2,1]))
-        
+
+print(trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
+
 '''
     while left < right:
         res = (right - left) * min(height[right], height[left])
@@ -47,7 +47,8 @@ print(trap([0,1,0,2,1,0,1,3,2,1,2,1]))
             right -= 1
 
     return suma
-
+Jeśli lewy jest większy od lewgo + 1 to res = left - (left +1): 
+aktualizacj o każdy skok res += left - (left +1) dopóki nowy lewy nie będzie równy bądź większy od lewego od którego to się zaczeło
 '''
 
 '''
