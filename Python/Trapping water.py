@@ -6,26 +6,18 @@ def trap(height: list[int]) -> int:
     while height[right - 1] >= height[right]:
         right -= 1
 
+    while height[left + 1] >= height[left]:
+        left += 1
+
     while left < right:
-
         r = left + 1
-
-        while height[left] > height[r] and r < right:
-            #weź obecny lewy i sprawdź czy od lewego do końca nie ma równego bądź większego jak nie to odaj res jak tak to idź dalej
-            while height[left] < height[r]:
-                if height[left] <= height[i]:
-                    left = i
-            else:
-                return res
-
+        if height[left] > height[r]:
             res += height[left] - height[r]
-            r += 1
-
-        if height[r] >= height[left]:
+            left += 1
+        if height[left] <= height[r]:
             left = r
 
     return res
-
 
 print(trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
 
