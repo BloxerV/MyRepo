@@ -1,16 +1,31 @@
 def trap(height: list[int]) -> int:
     left, right = 0, len(height) - 1
     res = 0
+    r = 0
 
     while left < right:
+        while height[right - 1] >= height[right]:
+            right -= 1
 
-        if  height[left] > height[left + 1]:
-            res += height[left] - height[left + 1]
-            left += 1
+        if  height[left] > height[left + 1]: #Jeśli lewy jest większy od lewgo + 1 to res = left - (left +1): 
+                                             #aktualizacj o każdy skok res += left - (left +1) !dopóki! nowy lewy nie będzie równy bądź większy od lewego od którego to się zaczeło
+            r = left + 1
+            
+           #weź obecny lewy i szukaj prawą stronę aż nie znajdzie równego sobie lub wiekszego jeśli nie znajdzie return res
+            while True:
+                rr = r
+                if height[left] >= height[rr]:
+                    rr += 1
+                else:
+                    break
 
-            while left < right and height[left] < height[left + 1]:
-                left += 1
-                res += height[left] - height[left + 1]
+            while height[left] > height[r]:
+                res += height[left] - height[r]
+                r += 1
+                if r >= right:
+                    left = r
+                    continue
+            left = r
 
         else:
             left += 1
@@ -18,7 +33,7 @@ def trap(height: list[int]) -> int:
 
     return res
 
-print(trap([0,2,0,3,1,0,1,3,2,1]))
+print(trap([0,1,0,2,1,0,1,3,2,1,2,1]))
         
 '''
     while left < right:
@@ -32,8 +47,7 @@ print(trap([0,2,0,3,1,0,1,3,2,1]))
             right -= 1
 
     return suma
-Jeśli lewy jest większy od lewgo + 1 to res = left - (left +1): 
-aktualizacj o każdy skok res += left - (left +1) dopóki nowy lewy nie będzie równy bądź większy od lewego od którego to się zaczeło
+
 '''
 
 '''
