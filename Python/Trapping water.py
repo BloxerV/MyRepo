@@ -3,32 +3,26 @@ def trap(height: list[int]) -> int:
     res = 0
     r = 0
 
+    while height[right - 1] >= height[right]:
+        right -= 1
+
     while left < right:
-        while height[right - 1] >= height[right]:
-            right -= 1
 
-        if  height[left] > height[left + 1]: #Jeśli lewy jest większy od lewgo + 1 to res = left - (left +1): 
-                                             #aktualizacj o każdy skok res += left - (left +1) !dopóki! nowy lewy nie będzie równy bądź większy od lewego od którego to się zaczeło
-            r = left + 1
-            
-           #weź obecny lewy i szukaj prawą stronę aż nie znajdzie równego sobie lub wiekszego jeśli nie znajdzie return res
-            while True:
-                rr = r
-                if height[left] >= height[rr]:
-                    rr += 1
-                else:
-                    break
+        r = left + 1
 
-            while height[left] > height[r]:
-                res += height[left] - height[r]
-                r += 1
-                if r >= right:
-                    left = r
-                    continue
+        while height[left] > height[r] and r < right:
+            #weź obecny lewy i sprawdź czy od lewego do końca nie ma równego bądź większego jak nie to odaj res jak tak to idź dalej
+            while height[left] < height[r]:
+                if height[left] <= height[i]:
+                    left = i
+            else:
+                return res
+
+            res += height[left] - height[r]
+            r += 1
+
+        if height[r] >= height[left]:
             left = r
-
-        else:
-            left += 1
 
     return res
 
