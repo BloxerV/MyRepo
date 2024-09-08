@@ -2,13 +2,30 @@ def isValid(s: str) -> bool:
     left, right = 0, len(s) - 1
 
     while left < right:
-        if s[left] == s[right]:
-            left += 1
-            right -= 1
+        if s[left] == '(':
+            if s[right] == ')':
+                left += 1
+                right -= 1
+            else:
+                return False
+
+        elif s[left] == '[':
+            if s[right] == ']':
+                left += 1
+                right -= 1
+            else:
+                return False
+
+        elif s[left] == '{':
+            if s[right] == '}':
+                left += 1
+                right -= 1
+            else:
+                return False
         else:
-            return 'The brackets are not closed in the correct order.'
+            return False
     return True
-st = "([{}])"
+st = "()[]{}"
 print(isValid(st))
 
 '''
