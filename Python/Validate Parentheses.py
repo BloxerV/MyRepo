@@ -1,30 +1,18 @@
 def isValid(s: str) -> bool:
-    left, right = 0, len(s) - 1
+    stack = []
+    close_to_open = { ')': '(', '}': '{', ']': '[' }
 
-    while left < right:
-        if s[left] == '(':
-            if s[right] == ')':
-                left += 1
-                right -= 1
-            else:
-                return False
-
-        elif s[left] == '[':
-            if s[right] == ']':
-                left += 1
-                right -= 1
-            else:
-                return False
-
-        elif s[left] == '{':
-            if s[right] == '}':
-                left += 1
-                right -= 1
+    for c in s:
+        if c in close_to_open:
+            if stack and stack[-1] == close_to_open[c]:
+                stack.pop()
             else:
                 return False
         else:
-            return False
-    return True
+            stack.append(c)
+    return True if not stack else False
+
+
 st = "()[]{}"
 print(isValid(st))
 
