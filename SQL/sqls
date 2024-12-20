@@ -20,5 +20,3 @@ SELECT
     MAX(CASE WHEN occupation = 'Actor' THEN name ELSE NULL END) AS  'Actor'
 FROM occupations
 GROUP BY name;
-
-\\192.168.1.110\prox-pool\prox-share
